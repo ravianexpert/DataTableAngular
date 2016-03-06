@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<meta charset="utf-8" />
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<title>Angular dataTable</title>
+</head>
+<body ng-cloak>
+<h1 class="heading">Employee Data</h1>
+
+<div class="emp-container" ng-controller="empController">
+	<label class="all-search">Search: <input type="search" name="" ng-model="allFilter" value="name" class="all-search-input" /></label>
+	<table class="data-table">
+		<thead>
+			<tr>
+				<th ng-click="sort_by('name')">Employee Name<span class="sortorder"></span></th>
+				<th ng-click="sort_by('designation')">Designation<span class="sortorder"></span></th>
+				<th ng-click="sort_by('empId')">Employee ID<span class="sortorder"></span></th>
+				<th ng-click="sort_by('location')">Location<span class="sortorder"></span></th>
+				<th ng-click="sort_by('country')">Country<span class="sortorder"></span></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><label class="search-label"> Search by - Name : <br /><input type="search" name="" ng-model="gridFilter.name" value="name" class="search" /></label></td>
+				<td><label class="search-label"> Search by - Designation : <br /><input type="search" name="" ng-model="gridFilter.designation" class="search" /></label></td>
+				<td><label class="search-label"> Search by - Employee ID : <br /><input type="search" name="" ng-model="gridFilter.empId" class="search" /></label></td>
+				<td><label class="search-label"> Search by - Location : <br /><input type="search" name="" ng-model="gridFilter.location" class="search" /></label></td>
+				<td><label class="search-label"> Search by - Country : <br /><input type="search" name="" ng-model="gridFilter.country" class="search" /></label></td>
+			</tr>
+			<tr ng-repeat="emp in employees | filter:gridFilter | filter:allFilter | orderBy:sortingOrder:reverse">
+				<td>{{ emp.name }}</td>
+				<td>{{ emp.designation }}</td>
+				<td>{{ emp.empId }}</td>
+				<td>{{ emp.location }}</td>
+				<td>{{ emp.country }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div><!-- //emp-container -->
+<script src="js/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/controller.js"></script>
+</body>
+</html>
